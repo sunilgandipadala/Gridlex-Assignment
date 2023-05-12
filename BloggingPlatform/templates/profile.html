@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h2>User Profile</h2>
+<p>First Name: {{ user_profile.user.first_name }}</p>
+<p>Last Name: {{ user_profile.user.last_name }}</p>
+<p>Email: {{ user_profile.user.email }}</p>
+<hr>
+<h3>Your Blog Posts</h3>
+<div class="row card">
+{% for post in blog_posts %}
+  <div class="column card-body">
+    <h4>{{ post.title }}</h4>
+    <p>{{ post.description }}</p>
+    <p>Author: {{ post.author.get_full_name }}</p>
+    <p>Published: {{ post.created_at }}</p>
+    <a href="{% url 'post_detail' post.id %}">Read More</a>
+    <a href="{% url 'add_comment' post.id %}"><p><i><b>Add Comment</b></i> <i class="fa fa-comment fa-lg"></i></p></a>
+  </div>
+  <hr>
+  
+{% empty %}
+  <p>No blog posts found.</p>
+{% endfor %}
+</div>
+{% endblock content %}

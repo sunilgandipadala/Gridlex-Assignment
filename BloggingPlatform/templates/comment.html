@@ -1,0 +1,12 @@
+
+{% block content %}
+<!-- add_comment.html -->
+
+<h2>Add a Comment</h2>
+
+<form method="post" action=" ">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" style="margin-left:10%">Submit</button>
+</form>
+{% endblock content %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% for blog_post in blog_posts %}
+  <h3>{{ blog_post.title }}</h3>
+  <p>{{ blog_post.description }}</p>
+  <p>{{blog_post.body}}</p>
+  <!-- Display other blog post details -->
+{% empty %}
+  <p>No blog posts found.</p>
+{% endfor %}
+{% endblock content %}

@@ -1,0 +1,26 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% if categories %}
+<h2>Filter by Categories</h2>
+
+<ul>
+  {% for category in categories %}
+    <li><a href="{% url 'search_blog_posts' %}?category={{ category.id }}">{{ category.name }}</a></li>
+  {% endfor %}
+</ul> 
+{% endblock content %}
+
+{% endif %}
+<!-- filter_tags.html -->
+{% if tags %}
+<h2>Filter by Tags</h2>
+
+<ul>
+  {% for tag in tags %}
+    <li><a href="{% url 'search_blog_posts' %}?tag={{ tag.id }}">{{ tag.name }}</a></li>
+  {% endfor %}
+</ul>
+{% endif %}
