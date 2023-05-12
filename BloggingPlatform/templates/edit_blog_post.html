@@ -24,6 +24,6 @@
     </form>
   </div>
   
-{% include 'comment.html' %}
+  <p><a href="{% url 'add_comment' post.id %}"><i><b>Add Comment</b></i> <i class="fa fa-comment fa-lg"></i></a></p>
   </div>
 {% endblock content %}
