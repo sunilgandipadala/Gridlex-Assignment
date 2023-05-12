@@ -47,14 +47,6 @@ def user_login(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
-        '''we can also validate in our own way..'''
-        '''if User.objects.filter(username=email):
-            userdata = User.objects.filter(username= email).values()
-            if userdata['password'] == password:
-                login(request, userdata)
-                return redirect('home')  # Redirect to the home page after successful login    
-        messages.error(request, 'Invalid email or password.')
-        '''
         user = authenticate(request, email=email, password=password)
         if user is not None:
             login(request, user)
@@ -97,17 +89,11 @@ def edit_blog_post(request, post_id):
         post = get_object_or_404(BlogPost, pk=post_id)
         #post = BlogPost.objects.filter(title=title).values() #now we have to pass the title along with url.
         if request.user != post.author:
-            messages.error(request,"Login TO Edit")
+            messages.error(request,"Login TO Edit Only Created By Yours")
             print("You are not allowed to edit")
             return redirect('home')
         if request.method == 'POST':
-            '''form = BlogPostForm(request.POST)
-            if form.is_valid():
-                blog_post = form.save(commit=False)
-                blog_post.author = request.user
-                blog_post.save()
-                return redirect('home')
-            '''
+            
             title = request.POST['title']
             description = request.POST['description']
             body = request.POST['body']
