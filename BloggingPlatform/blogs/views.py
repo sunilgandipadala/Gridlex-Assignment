@@ -40,8 +40,7 @@ def register(request):
             login(request, user)
             return redirect('home')  # Redirect to the home page after successful registration
         except Exception as e:
-            messages.error(request, str(e))
-            print("Exception")
+            messages.error(request, 'Email Already Exists')
             return redirect('register')
     return render(request, 'accounts/register.html')
 def user_login(request):
